@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  TextField, Button, Box } from '@material-ui/core';
 
 
@@ -25,43 +25,54 @@ const formButton = {
 }
 
 const FormBox = () => {
+    const [contactInfo, setContactInfo] = useState([{phoneNumber: '', name:'' }]);
+    const [arrayOfContacts, setArrayOfContacts] = useState([])
+
+    const handleChange = (event)=> {
+        setContactInfo({...contactInfo, [event.target.name]: event.target.value})
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setArrayOfContacts([...arrayOfContacts, contactInfo]);
+        setContactInfo({phoneNumber:'',name:''})
+    }
 
     return(
-            <>
+        <>
             <Box
                 width="50%" 
                 height="20%" 
                 boxShadow={3} 
-                // flexDirection="row" 
                 justifyContent='space-around'
-                // mx="auto" 
                 style={boxTitleStyle}>
                 Add New Contact
             </Box>
             <Box 
-                // m={1}
                 width="50%" 
                 height="20%" 
                 boxShadow={3} 
-                // flexDirection="row" 
-                // mx="auto" 
                 style={boxFormStyle}>
-                <form>
+                <form onSubmit={handleSubmit}> 
                     <TextField 
                         id='outlined-basic' 
                         label='Name' 
                         varient='outlined' 
-                        // required 
-                        size='large'
+                        size='medium'
                         style={formInputStyle}
+                        value={contactInfo.name}
+                        onChange={handleChange}
+                        name='name'
                     />
                     <TextField 
                         id='outlined-basic' 
                         label='Phone Number' 
                         varient='outlined' 
-                        // required  
-                        size='large' 
+                        size='medium' 
                         style={formInputStyle}
+                        value={contactInfo.phoneNumber}
+                        onChange={handleChange}
+                        name='phoneNumber'
                     />
                     <Button 
                         variant='contained'
@@ -72,10 +83,8 @@ const FormBox = () => {
                         + Add
                     </Button>
                 </form>
-
-                
             </Box>
-            </>
+        </>
     )
 }
 
