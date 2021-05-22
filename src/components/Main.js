@@ -7,10 +7,10 @@ const Main = () => {
     const containerStyle = {
         display:'flex', 
         flexDirection:'column',
-        // contentAlign: 'center',
         justifyContent: "center",
         alignItems: "center"
     }
+    
     return(
         <>
         <Container style={containerStyle}>

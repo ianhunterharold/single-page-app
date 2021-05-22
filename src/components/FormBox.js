@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {  TextField, Button, Box } from '@material-ui/core';
-
+import ContactList from './ContactList';
 
 const boxFormStyle = {
     backgroundColor: 'white',    
@@ -63,6 +63,7 @@ const FormBox = () => {
                         value={contactInfo.name}
                         onChange={handleChange}
                         name='name'
+                        required
                     />
                     <TextField 
                         id='outlined-basic' 
@@ -73,6 +74,7 @@ const FormBox = () => {
                         value={contactInfo.phoneNumber}
                         onChange={handleChange}
                         name='phoneNumber'
+                        required
                     />
                     <Button 
                         variant='contained'
@@ -84,6 +86,7 @@ const FormBox = () => {
                     </Button>
                 </form>
             </Box>
+            <ContactList arrayOfContacts={arrayOfContacts}/>
         </>
     )
 }
