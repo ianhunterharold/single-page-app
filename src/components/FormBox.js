@@ -10,9 +10,6 @@ const boxTitleStyle = {
     backgroundColor: 'gray',    
     marginTop: '30px',
     padding: '15px',
-    // marginLeft: '40px',
-    // marginRight: '100px',
-    // contentAlign: 'center',
 }
 const formInputStyle = {
     margin: 10,
@@ -25,7 +22,7 @@ const formButton = {
 }
 
 const FormBox = () => {
-    const [contactInfo, setContactInfo] = useState([{phoneNumber: '', name:'' }]);
+    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'' }]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
 
     const handleChange = (event)=> {
