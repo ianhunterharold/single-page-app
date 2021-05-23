@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import FormBox from './FormBox';
 import Title from './Title';
 import { Container } from '@material-ui/core';
@@ -8,7 +8,8 @@ const Main = () => {
         display:'flex', 
         flexDirection:'column',
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: '#a0c5c4',
     }
     
     return(

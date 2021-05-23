@@ -2,7 +2,7 @@ import Main from '../src/components/Main';
 
 function App() {
   return (
-    <div>
+    <div style={{backgroundColor: '#a0c5c4'}}>
         <Main/>
     </div>
   );
