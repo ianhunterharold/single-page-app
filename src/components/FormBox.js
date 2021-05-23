@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {  TextField, Button, Box } from '@material-ui/core';
 import ContactList from './ContactList';
 import PhoneNumber from 'awesome-phonenumber'; 
@@ -42,7 +42,6 @@ const FormBox = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // is the phone number input unique?
         
         isValid(contactInfo);
 
@@ -51,7 +50,6 @@ const FormBox = () => {
         }
         
         const notUnique = arrayOfContacts.find((contact) => contact.phoneNumber === contactInfo.phoneNumber); 
-        console.log(notUnique,"!!!");
 
         if(notUnique){
             return setUniqueNumErr(true);
@@ -60,6 +58,12 @@ const FormBox = () => {
         setArrayOfContacts([...arrayOfContacts, contactInfo]);
         setContactInfo({phoneNumber:'',name:''})
     }
+
+    const removeContact =(number) => {
+        const newArrayofContacts = arrayOfContacts.filter((contact) => contact.phoneNumber !== number);
+        setArrayOfContacts(newArrayofContacts);
+    }
+    
 
     return(
         <>
@@ -120,7 +124,7 @@ const FormBox = () => {
                 }
                 
             </Box>
-            <ContactList arrayOfContacts={arrayOfContacts}/>
+            <ContactList arrayOfContacts={arrayOfContacts} removeContact={removeContact}/>
         </>
     )
 }
