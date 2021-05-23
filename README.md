@@ -1,1 +1,1 @@
-# sinlge-page-app
+# single-page-app
