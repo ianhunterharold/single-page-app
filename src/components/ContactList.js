@@ -15,7 +15,6 @@ const ContactList = (props) => {
 
     const handleRemoveContact = (number) => {
         props.removeContact(number);
-
     }
 
     return(

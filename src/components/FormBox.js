@@ -7,11 +7,15 @@ import { Alert } from '@material-ui/lab';
 const boxFormStyle = {
     backgroundColor: 'white',    
     padding: '15px',
+    borderBottomLeftRadius:'5px',
+    borderBottomRightRadius: '5px',
 }
 const boxTitleStyle = {
     backgroundColor: 'gray',    
     marginTop: '30px',
     padding: '15px',
+    borderTopLeftRadius:'5px',
+    borderTopRightRadius: '5px',
 }
 const formInputStyle = {
     margin: 10,
