@@ -22,7 +22,7 @@ const ContactList = (props) => {
 
     return(
         <>
-        <List>
+        <List style={{width: '50%'}}>
             {props && props.arrayOfContacts.length > 0 && props.arrayOfContacts.map((contact)=> {
                 const labelId = `secondary-label-${contact}`
                 return(

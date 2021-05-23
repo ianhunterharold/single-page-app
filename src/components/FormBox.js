@@ -27,12 +27,8 @@ const FormBox = () => {
     const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'' }]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
     const [err,SetErr]=useState(false);
+    const [uniqueNumErr, setUniqueNumErr]=useState(false);
 
-    const isUnique = (contactInfo, arrayOfContacts) => {
-        // compare phone numbers with all other phone numbers 
-        // if a match, throw an error message
-        // if no match, do nothing 
-    }
     const isValid = (contactInfo) => {
         const pn = new PhoneNumber(contactInfo.phoneNumber, 'US');
         return pn.isValid();
@@ -41,6 +37,7 @@ const FormBox = () => {
     const handleChange = (event)=> {
         setContactInfo({...contactInfo, [event.target.name]: event.target.value})
         SetErr(false);
+        setUniqueNumErr(false);
     }
 
     const handleSubmit = (event) => {
@@ -48,10 +45,17 @@ const FormBox = () => {
         // is the phone number input unique?
         
         isValid(contactInfo);
+
         if (!isValid(contactInfo)){
             return SetErr(true); 
         }
-        // isUnique(contactInfo, arrayOfContacts);
+        
+        const notUnique = arrayOfContacts.find((contact) => contact.phoneNumber === contactInfo.phoneNumber); 
+        console.log(notUnique,"!!!");
+
+        if(notUnique){
+            return setUniqueNumErr(true);
+        };
 
         setArrayOfContacts([...arrayOfContacts, contactInfo]);
         setContactInfo({phoneNumber:'',name:''})
@@ -105,10 +109,16 @@ const FormBox = () => {
                     </Button>
                 </form>
                 { err ?
-                    <Alert severity="error">Please Enter a Valid USA Phone Number</Alert>
+                    <Alert severity="error">Please enter a valid USA phone number</Alert>
                     : 
                     null
-                    }
+                }
+                { uniqueNumErr ?
+                    <Alert severity="error">Looks like that number has already been added. Please use a different phone number</Alert>
+                    : 
+                    null
+                }
+                
             </Box>
             <ContactList arrayOfContacts={arrayOfContacts}/>
         </>
