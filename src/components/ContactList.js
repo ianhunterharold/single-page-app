@@ -32,11 +32,11 @@ const ContactList = (props) => {
                         <ListItemAvatar>
                             <Avatar/>
                         </ListItemAvatar>
-                        <ListItemText id={labelId} primary={contact.name} style={{paddingRight: '170px'}} />
+                        <ListItemText id={labelId} primary={contact.name} style={{paddingRight: '70px'}} />
                         <ListItemIcon>
                             <PhoneIcon fontSize='large'/>
                         </ListItemIcon>
-                        <ListItemText id={labelId} primary={contact.phoneNumber} componet='div' style={{paddingRight: '80px'}} />
+                        <ListItemText id={labelId} primary={contact.phoneNumber} componet='div' style={{paddingRight: '70px'}} />
                         <ListItemIcon>
                             <Button onClick={handleRemoveContact}>
                                 <DeleteIcon/>

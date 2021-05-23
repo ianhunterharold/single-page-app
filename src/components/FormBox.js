@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {  TextField, Button, Box } from '@material-ui/core';
 import ContactList from './ContactList';
+import PhoneNumber from 'awesome-phonenumber'; 
+import { Alert } from '@material-ui/lab';
 
 const boxFormStyle = {
     backgroundColor: 'white',    
@@ -24,13 +26,33 @@ const formButton = {
 const FormBox = () => {
     const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'' }]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
+    const [err,SetErr]=useState(false);
 
+    const isUnique = (contactInfo, arrayOfContacts) => {
+        // compare phone numbers with all other phone numbers 
+        // if a match, throw an error message
+        // if no match, do nothing 
+    }
+    const isValid = (contactInfo) => {
+        const pn = new PhoneNumber(contactInfo.phoneNumber, 'US');
+        return pn.isValid();
+    }
+        
     const handleChange = (event)=> {
         setContactInfo({...contactInfo, [event.target.name]: event.target.value})
+        SetErr(false);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        // is the phone number input unique?
+        
+        isValid(contactInfo);
+        if (!isValid(contactInfo)){
+            return SetErr(true); 
+        }
+        // isUnique(contactInfo, arrayOfContacts);
+
         setArrayOfContacts([...arrayOfContacts, contactInfo]);
         setContactInfo({phoneNumber:'',name:''})
     }
@@ -82,6 +104,11 @@ const FormBox = () => {
                         + Add
                     </Button>
                 </form>
+                { err ?
+                    <Alert severity="error">Please Enter a Valid USA Phone Number</Alert>
+                    : 
+                    null
+                    }
             </Box>
             <ContactList arrayOfContacts={arrayOfContacts}/>
         </>
