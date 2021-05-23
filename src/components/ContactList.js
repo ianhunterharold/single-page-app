@@ -11,6 +11,7 @@ const ContactList = (props) => {
         justifyContent: 'center',
         alignItems:'center',        
         flexWrap:"wrap",
+        
     }
 
     const handleRemoveContact = (number) => {
@@ -28,7 +29,7 @@ const ContactList = (props) => {
                             <ListItemAvatar>
                                 <Avatar/>
                             </ListItemAvatar>
-                            <ListItemText id={labelId} primary={contact.name} style={{paddingRight: '70px'}} />
+                            <ListItemText id={labelId} primary={contact.name} style={{ flex: 4, display:'flex', flexWrap: 'wrap', paddingRight: '70px',}} />
                             <ListItemIcon>
                                 <PhoneIcon fontSize='large'/>
                             </ListItemIcon>
