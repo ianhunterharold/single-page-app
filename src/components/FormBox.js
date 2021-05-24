@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {  TextField, Button, Box } from '@material-ui/core';
 import ContactList from './ContactList';
 import PhoneNumber from 'awesome-phonenumber'; 
@@ -28,7 +28,7 @@ const formButton = {
 }
 
 const FormBox = () => {
-    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'' }]);
+    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'',favorite:false}]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
     const [err,SetErr]=useState(false);
     const [uniqueNumErr, setUniqueNumErr]=useState(false);
@@ -66,6 +66,15 @@ const FormBox = () => {
     const removeContact =(number) => {
         const newArrayofContacts = arrayOfContacts.filter((contact) => contact.phoneNumber !== number);
         setArrayOfContacts(newArrayofContacts);
+    }
+
+    const changeFavoriteStatus = (number) => {
+        console.log('change the boolean status to the opposite')
+        const findContact = arrayOfContacts.filter((contact)=> contact.phoneNumber !== contactInfo.phoneNumber)
+        //line above not finding the specifc object i am looking for
+        return console.log(findContact,"1211")
+        // change so that when you find the object in the array, you then change the favorite to the opposite 
+        // then render the correct icon depending on favorite or not favorite with a state value in the contact list 
     }
     
 
@@ -128,7 +137,7 @@ const FormBox = () => {
                 }
                 
             </Box>
-            <ContactList arrayOfContacts={arrayOfContacts} removeContact={removeContact}/>
+            <ContactList arrayOfContacts={arrayOfContacts} removeContact={removeContact} changeFavoriteStatus={changeFavoriteStatus}/>
         </>
     )
 }
