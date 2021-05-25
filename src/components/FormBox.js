@@ -28,7 +28,7 @@ const formButton = {
 }
 
 const FormBox = () => {
-    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'',favorite:false}]);
+    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'', favorite:false}]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
     const [err,SetErr]=useState(false);
     const [uniqueNumErr, setUniqueNumErr]=useState(false);
@@ -60,7 +60,7 @@ const FormBox = () => {
         };
 
         setArrayOfContacts([...arrayOfContacts, contactInfo]);
-        setContactInfo({phoneNumber:'',name:''})
+        setContactInfo({phoneNumber:'',name:'',favorite:false})
     }
 
     const removeContact =(number) => {
@@ -69,12 +69,14 @@ const FormBox = () => {
     }
 
     const changeFavoriteStatus = (number) => {
-        console.log('change the boolean status to the opposite')
-        const findContact = arrayOfContacts.filter((contact)=> contact.phoneNumber !== contactInfo.phoneNumber)
-        //line above not finding the specifc object i am looking for
-        return console.log(findContact,"1211")
-        // change so that when you find the object in the array, you then change the favorite to the opposite 
-        // then render the correct icon depending on favorite or not favorite with a state value in the contact list 
+        return  arrayOfContacts.map((contact) => {
+
+
+        if (contact.phoneNumber === number){
+            contact.favorite = !contact.favorite; 
+        }
+        return arrayOfContacts;
+        });
     }
     
 
