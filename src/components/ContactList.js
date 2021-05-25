@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {List, ListItem,ListItemAvatar, Avatar, ListItemText, ListItemIcon, Divider,Button } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 const ContactList = (props) => {
     
@@ -18,10 +19,9 @@ const ContactList = (props) => {
     const handleRemoveContact = (number) => {
         props.removeContact(number);
     }
-    const handleFavoriteStatus = (number) => {
-        props.changeFavoriteStatus(number)
+    const handleFavoriteStatus = (number, name) => {
+        props.changeFavoriteStatus(number, name)
     }
-
 
     return(
         <>
@@ -39,11 +39,6 @@ const ContactList = (props) => {
                                 <PhoneIcon fontSize='large'/>
                             </ListItemIcon>
                             <ListItemText id={`${contact.phoneNumber}`} primary={contact.phoneNumber} componet='div' style={{paddingRight: '70px'}} />
-                            <ListItemIcon>
-                                <Button onClick={()=>handleFavoriteStatus(contact.phoneNumber)}>
-                                    <FavoriteBorderIcon/>
-                                </Button>
-                            </ListItemIcon>
                             <ListItemIcon>
                                 <Button onClick={()=> handleRemoveContact(contact.phoneNumber )}>
                                     <DeleteIcon/>

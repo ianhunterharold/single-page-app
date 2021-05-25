@@ -4,12 +4,12 @@ import Title from './Title';
 import { Container } from '@material-ui/core';
 
 const Main = () => {
+    
     const containerStyle = {
         display:'flex', 
         flexDirection:'column',
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: '#a0c5c4',
     }
     
     return(
