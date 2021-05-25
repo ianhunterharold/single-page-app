@@ -2,7 +2,8 @@ import React from 'react';
 import {List, ListItem,ListItemAvatar, Avatar, ListItemText, ListItemIcon, Divider,Button } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const ContactList = (props) => {
     
