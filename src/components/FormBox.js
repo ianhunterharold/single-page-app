@@ -28,7 +28,7 @@ const formButton = {
 }
 
 const FormBox = () => {
-    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:''}]);
+    const [contactInfo, setContactInfo] = useState([{ phoneNumber: '', name:'',favorite:false}]);
     const [arrayOfContacts, setArrayOfContacts] = useState([])
     const [err,SetErr]=useState(false);
     const [uniqueNumErr, setUniqueNumErr]=useState(false);
@@ -63,9 +63,19 @@ const FormBox = () => {
         setContactInfo({phoneNumber:'',name:''})
     }
 
-    const removeContact =(number) => {
+    const removeContact = (number) => {
         const newArrayofContacts = arrayOfContacts.filter((contact) => contact.phoneNumber !== number);
         setArrayOfContacts(newArrayofContacts);
+    }
+
+    const changeFavoriteStatus = (phone) => {
+        const prevArray = arrayOfContacts;
+        prevArray.map((contact) => {
+            if(contact.phoneNumber === phone){
+                contact.favorite = !contact.favorite;
+            }
+        })
+        return setArrayOfContacts([...prevArray]);
     }
 
     return(
@@ -126,7 +136,7 @@ const FormBox = () => {
                     null
                 }
             </Box>
-            <ContactList arrayOfContacts={arrayOfContacts} removeContact={removeContact}/>
+            <ContactList arrayOfContacts={arrayOfContacts} removeContact={removeContact} changeFavoriteStatus={changeFavoriteStatus}/>
         </>
     )
 }

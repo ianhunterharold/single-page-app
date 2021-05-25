@@ -19,8 +19,8 @@ const ContactList = (props) => {
     const handleRemoveContact = (number) => {
         props.removeContact(number);
     }
-    const handleFavoriteStatus = (number, name) => {
-        props.changeFavoriteStatus(number, name)
+    const handleFavoriteStatus = (number) => {
+        props.changeFavoriteStatus(number)
     }
 
     return(
@@ -40,7 +40,18 @@ const ContactList = (props) => {
                             </ListItemIcon>
                             <ListItemText id={`${contact.phoneNumber}`} primary={contact.phoneNumber} componet='div' style={{paddingRight: '70px'}} />
                             <ListItemIcon>
-                                <Button onClick={()=> handleRemoveContact(contact.phoneNumber )}>
+                                <Button onClick={()=>handleFavoriteStatus(contact.phoneNumber)}> 
+                                {
+                                    contact.favorite ?
+                                    <FavoriteIcon/>
+                                    :
+                                    <FavoriteBorderIcon/>
+                                }
+                                    
+                                </Button>
+                            </ListItemIcon>
+                            <ListItemIcon>
+                                <Button onClick={()=> handleRemoveContact(contact.phoneNumber)}>
                                     <DeleteIcon/>
                                 </Button>
                             </ListItemIcon>
