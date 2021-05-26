@@ -68,14 +68,25 @@ const FormBox = () => {
         setArrayOfContacts(newArrayofContacts);
     }
 
+    // const changeFavoriteStatus = (phone) => {
+    //     const prevArray = [...arrayOfContacts];
+    //     prevArray.map((contact) => {
+    //         if(contact.phoneNumber === phone){
+    //             contact.favorite = !contact.favorite;
+    //         }
+    //     })
+    //     return setArrayOfContacts([...prevArray]);
+    // }
+     //updated function - better solution for favoriteButton
     const changeFavoriteStatus = (phone) => {
-        const prevArray = arrayOfContacts;
-        prevArray.map((contact) => {
-            if(contact.phoneNumber === phone){
-                contact.favorite = !contact.favorite;
+        const updatedContacts = arrayOfContacts.map(contact => {
+            if(contact.phoneNumber === phone) {
+                contact.favorite = !contact.favorite; 
             }
+            return contact
+
         })
-        return setArrayOfContacts([...prevArray]);
+        return setArrayOfContacts(updatedContacts);
     }
 
     return(
